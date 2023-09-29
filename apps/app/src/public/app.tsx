@@ -1,8 +1,7 @@
-import { useQuery } from "@tanstack/react-query"
-import { fetchISSNow } from "./utils"
+import { useISSNowQuery } from '@react-query-pnpm-demo/queries'
 
 const App = () => {
-  const { data } = useQuery(['iss-now'], fetchISSNow)
+  const { data } = useISSNowQuery()
 
   return (
     <>

@@ -9,6 +9,7 @@
   "dependencies": {
     "@loadable/component": "^5.15.3",
     "@loadable/server": "^5.15.3",
+    "@react-query-pnpm-demo/queries": "*",
     "@tanstack/react-query": "4.33.0",
     "axios": "^1.5.1",
     "express": "^4.18.2",

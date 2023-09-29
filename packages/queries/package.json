@@ -1,0 +1,18 @@
+{
+  "name": "@react-query-pnpm-demo/queries",
+  "version": "1.0.0",
+  "private": true,
+  "main": "build/index.js",
+  "types": "src/index.ts",
+  "scripts": {
+    "build": "rm -rf ./build && webpack --mode production --progress --color"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "4.33.0",
+    "axios": "^1.5.1"
+  },
+  "devDependencies": {
+    "@react-query-pnpm-demo/webpack": "*",
+    "@react-query-pnpm-demo/tsconfig": "*"
+  }
+}

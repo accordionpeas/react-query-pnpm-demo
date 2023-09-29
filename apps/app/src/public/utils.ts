@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 export const isServer = typeof window === 'undefined'
 
 export const getJSONFromScriptTag = (id: string) => {
@@ -10,9 +8,4 @@ export const getJSONFromScriptTag = (id: string) => {
   } catch (err) {
     return {}
   }
-}
-
-export const fetchISSNow = async () => {
-  const response = await axios('http://api.open-notify.org/iss-now.json')
-  return response.data
 }

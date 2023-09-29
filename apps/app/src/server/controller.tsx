@@ -5,7 +5,7 @@ import { Request, Response } from 'express'
 import { QueryClient, dehydrate } from '@tanstack/react-query'
 import Providers from '../public/providers'
 import App from '../public/app'
-import { fetchISSNow } from '..//public/utils'
+import { fetchISSNow } from '@react-query-pnpm-demo/queries'
 
 const statsFile = path.resolve(process.cwd(), 'build/public/loadable-stats.json')
 

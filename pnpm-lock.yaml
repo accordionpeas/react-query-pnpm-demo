@@ -35,6 +35,9 @@ importers:
       '@loadable/server':
         specifier: ^5.15.3
         version: 5.16.1(@loadable/component@5.15.3)(react@18.2.0)
+      '@react-query-pnpm-demo/queries':
+        specifier: '*'
+        version: link:../../packages/queries
       '@tanstack/react-query':
         specifier: 4.33.0
         version: 4.33.0(react-dom@18.2.0)(react@18.2.0)
@@ -75,6 +78,22 @@ importers:
       '@types/react-dom':
         specifier: ^18.0.11
         version: 18.2.8
+
+  packages/queries:
+    dependencies:
+      '@tanstack/react-query':
+        specifier: 4.33.0
+        version: 4.33.0(react-dom@18.2.0)(react@18.2.0)
+      axios:
+        specifier: ^1.5.1
+        version: 1.5.1
+    devDependencies:
+      '@react-query-pnpm-demo/tsconfig':
+        specifier: '*'
+        version: link:../tsconfig
+      '@react-query-pnpm-demo/webpack':
+        specifier: '*'
+        version: link:../webpack
 
   packages/tsconfig: {}
 

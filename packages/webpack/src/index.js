@@ -75,6 +75,31 @@ const server = (isProduction) => ({
   },
 })
 
+const lib = (isProduction) => ({
+  name: 'lib',
+  target: 'node',
+  
+  externals: [nodeExternals({})],
+
+  entry: {
+    app: './src/index.ts',
+  },
+
+  output: {
+    path: path.join(process.cwd(), 'build'),
+    libraryTarget: 'commonjs2',
+    filename: 'index.js',
+    publicPath: '/',
+    hashDigestLength: 20,
+  },
+
+  ...!isProduction && {
+    plugins: [
+      new NodemonPlugin(),
+    ],
+  },
+})
+
 const client = (isProduction) => ({
   name: 'client',
   target: 'web',
@@ -102,7 +127,7 @@ const client = (isProduction) => ({
   ],
 })
 
-module.exports = (env, arg) => {
+module.exports = (env, arg, isLib) => {
   const isProduction = arg.mode === 'production'
 
   const clientCommon = common({ isProduction, isClient: true })
@@ -121,6 +146,15 @@ module.exports = (env, arg) => {
       ...server(isProduction),
     },
   ];
+
+  if (isLib) {
+    return [
+      {
+        ...nodeCommon,
+        ...lib(isProduction),
+      }
+    ]
+  }
   
   return [
     ...clientConfig,
