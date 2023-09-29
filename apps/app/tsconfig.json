@@ -1,0 +1,7 @@
+{
+  "extends": "@react-query-pnpm-demo/tsconfig/base.json",
+  "compilerOptions": {
+    "baseUrl": "."
+  },
+  "include": ["src/**/*"]
+}
