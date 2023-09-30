@@ -7,8 +7,6 @@
     "build": "rm -rf ./build && webpack --mode production --progress --color"
   },
   "dependencies": {
-    "@loadable/component": "^5.15.3",
-    "@loadable/server": "^5.15.3",
     "@react-query-pnpm-demo/queries": "*",
     "@tanstack/react-query": "4.33.0",
     "axios": "^1.5.1",
@@ -18,12 +16,10 @@
     "source-map-support": "^0.5.21"
   },
   "devDependencies": {
-    "@react-query-pnpm-demo/webpack": "*",
     "@react-query-pnpm-demo/tsconfig": "*",
     "@types/express": "^4.17.17",
-    "@types/loadable__component": "^5.13.4",
-    "@types/loadable__server": "^5.12.6",
     "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11"
+    "@types/react-dom": "^18.0.11",
+    "webpack-node-externals": "3.0.0"
   }
 }

@@ -1,5 +1,3 @@
-import path from 'path'
-import { ChunkExtractor } from '@loadable/server'
 import ReactDOMServer from 'react-dom/server'
 import { Request, Response } from 'express'
 import { QueryClient, dehydrate } from '@tanstack/react-query'
@@ -7,15 +5,12 @@ import Providers from '../public/providers'
 import App from '../public/app'
 import { fetchISSNow } from '@react-query-pnpm-demo/queries'
 
-const statsFile = path.resolve(process.cwd(), 'build/public/loadable-stats.json')
-
 type GetHTMLArgs = {
   html: string
-  scriptTags: string
   query: unknown
 }
 
-const getHTML = ({ html, scriptTags, query }: GetHTMLArgs) => {
+const getHTML = ({ html, query }: GetHTMLArgs) => {
   const stringifiedState = JSON.stringify({ query }, null, 2)
 
   return `
@@ -29,32 +24,22 @@ const getHTML = ({ html, scriptTags, query }: GetHTMLArgs) => {
         <script id="preloaded-state" type="application/json">
           ${stringifiedState.replace(/</g, '\\u003c')}
         </script>
-        ${scriptTags}
+        <script src="/app.js"></script>
       </body>
     </html>
   `
 }
 
-type RenderPageArgs = {
-  query: unknown
-}
-
-const renderPage = ({ query }: RenderPageArgs): string => {
-  const extractor = new ChunkExtractor({
-    entrypoints: ['app'],
-    statsFile,
-  })
-
-  const jsx = extractor.collectChunks(
+const renderPage = (query: unknown): string => {
+  const jsx = (
     <Providers query={query}>
       <App />
     </Providers>
   )
 
   const html = ReactDOMServer.renderToString(jsx)
-  const scriptTags = extractor.getScriptTags()
 
-  const fullHTML = getHTML({ html, scriptTags, query })
+  const fullHTML = getHTML({ html, query })
 
   return fullHTML
 }
@@ -70,7 +55,7 @@ export default async (_req: Request, res: Response) => {
 
   const query = dehydrate(queryClient)
 
-  const html = renderPage({ query })
+  const html = renderPage(query)
 
   res.set('Content-Type', 'text/html')
   res.write(html)

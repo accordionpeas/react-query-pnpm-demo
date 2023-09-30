@@ -12,7 +12,7 @@
     "axios": "^1.5.1"
   },
   "devDependencies": {
-    "@react-query-pnpm-demo/webpack": "*",
-    "@react-query-pnpm-demo/tsconfig": "*"
+    "@react-query-pnpm-demo/tsconfig": "*",
+    "webpack-node-externals": "3.0.0"
   }
 }
